@@ -1,4 +1,5 @@
 ﻿using System;
+using ArrayUtilities;
 
 namespace Lab7
 {
@@ -6,7 +7,9 @@ namespace Lab7
     {
         static void Main(string[] args)
         {
-            
+            int[] array = { 2, -10, 5, -100, 2};
+
+            ArrayHelper.Min(array);
 
         }
         
@@ -42,7 +45,7 @@ namespace Lab7
             }
         }
 
-        static void Assignement4UsingNullcoalesce()
+        static void Assignement4UsingNullCoalesce()
         {
             string text = ReadFromKeybooard("Text=")
                 ?? ReadFromKeybooard("Text(second attempt)")
@@ -51,5 +54,7 @@ namespace Lab7
 
             Console.WriteLine(text);
         }
+
+ 
     }
 }
