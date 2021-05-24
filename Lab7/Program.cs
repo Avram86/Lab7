@@ -9,7 +9,8 @@ namespace Lab7
         {
             int[] array = { 2, -10, 5, -100, 2};
 
-            ArrayHelper.Min(array);
+            int[] elements = ArrayHelper.BubbleSortAscending(array);
+            ArrayHelper.Print( elements, "elements");
 
         }
         

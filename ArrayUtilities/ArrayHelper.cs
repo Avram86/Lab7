@@ -136,6 +136,16 @@ namespace ArrayUtilities
                 }
             } while (!areElementsOrdered);
 
+            return array;
+        }
+
+        public static void Print(int[] array, string label)
+        {
+            string labelToPrint = label ?? "Array";
+
+            string arrayElementsList = string.Join(", ", array ?? new int[0]);
+
+            Console.WriteLine($"{labelToPrint}=[{arrayElementsList}]");
         }
     }
 }
