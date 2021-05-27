@@ -97,51 +97,27 @@ namespace ArrayUtilities
             //              du-te inapoi de la inceput siverifica din nou array-ul
             //NOTA: algoritmul se termina cand nu mai gasim perechi de elem care trebuie schimbate
 
-            if(array==null || array.Length == 0)
-            {
-                return new int[0];
-            }
+            int[] result = Clone(array);
 
-            int intermediary;
-
-            //bool didSwapOccured=true;
-
-            //while(didSwapOccured)
-            //{
-            //    didSwapOccured = false;
-
-            //    for (int i = 0; i < array.Length - 1; i++)
-            //    {
-            //        if (array[i] > array[i + 1])
-            //        {
-            //            intermediary = array[i];
-            //            array[i] = array[i + 1];
-            //            array[i + 1] = intermediary;
-            //            didSwapOccured = true;
-            //            break;
-            //        }
-                    
-            //    }
-            //}
-
+            int intermediary = 0;
 
             bool areElementsOrdered;
             do
             {
                 areElementsOrdered = true;
 
-                for (int i = 0; i < array.Length -1; i++)
+                for (int i = 0; i < result.Length - 1; i++)
                 {
-                    bool isSwapNeeded=true;
+                    bool isSwapNeeded = true;
 
                     switch (sortDirection)
                     {
                         case SortDirection.Descending:
-                            isSwapNeeded = array[i] < array[i + 1];
+                            isSwapNeeded = result[i] < result[i + 1];
                             break;
 
                         case SortDirection.Ascending:
-                            isSwapNeeded = array[i] > array[i + 1];
+                            isSwapNeeded = result[i] > result[i + 1];
                             break;
                     }
 
@@ -156,9 +132,9 @@ namespace ArrayUtilities
                 }
             } while (!areElementsOrdered);
 
-            return array;
+            return result;
         }
-      
+
         /// <summary>
         /// Prints the array to the console
         /// </summary>
@@ -173,6 +149,65 @@ namespace ArrayUtilities
             Console.WriteLine($"{labelToPrint}=[{arrayElementsList}]");
         }
 
+        /// <summary>
+        /// Clones the original array into a new one, copying the elements
+        /// </summary>
+        /// <param name="array">the original array</param>
+        /// <returns>A clone</returns>
+        public static int[] Clone(int[] array)
+        {
+            if (array is null || array.Length == 0)
+            {
+                return new int[0];
+            }
+
+            int[] clone = new int[array.Length];
+            for (int i = 0; i < clone.Length; i++)
+            {
+                clone[i] = array[i];
+            }
+
+            return clone;
+        }
+
+        /// <summary>
+        /// Sorts the array using the selection sort
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="sortDirection"></param>
+        /// <returns></returns>
+        public static int[] SelectionSort(int[] array, SortDirection sortDirection)
+        {
+            int[] result = Clone(array);
+
+            for (int i = 0; i < result.Length - 1; i++)
+            {
+                //la fiecare pas, trebuie returnat min din subsirul ramas
+                for (int j = i + 1; j < result.Length; j++)
+                {
+                    bool isswapNeeded;
+                    switch (sortDirection)
+                    {
+                        case SortDirection.Descending:
+                            isswapNeeded = result[i] < result[i + 1];
+                            break;
+
+                        case SortDirection.Ascending:
+                        default:
+                            isswapNeeded = result[i] > result[i + 1];
+                            break;
+                    }
+                    if (isswapNeeded)
+                    {
+                        int temp = result[i];
+                        result[i] = result[j];
+                        result[j] = temp;
+                    }
+                }
+            }
+            return result;
+        }
+  
 
     }
 }
