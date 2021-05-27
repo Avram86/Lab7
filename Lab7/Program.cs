@@ -15,6 +15,9 @@ namespace Lab7
             int[] elementsDesc = ArrayHelper.SelectionSort(array, SortDirection.Descending);
             ArrayHelper.Print(elementsDesc, "elements descending");
 
+            long[] fibo = ArrayHelper.Fibonacci(12);
+            ArrayHelper.Print( fibo, "Fibonacci");
+
         }
         
         private static string ReadFromKeybooard(string label)

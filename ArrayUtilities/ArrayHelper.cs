@@ -150,6 +150,20 @@ namespace ArrayUtilities
         }
 
         /// <summary>
+        /// Prints an array to the console
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="label"></param>
+        public static void Print(long[] array, string label)
+        {
+            string labelToPrint = label ?? "Array";
+
+            string arrayElementsList = string.Join(", ", array ?? new long[0]);
+
+            Console.WriteLine($"{labelToPrint}=[{arrayElementsList}]");
+        }
+
+        /// <summary>
         /// Clones the original array into a new one, copying the elements
         /// </summary>
         /// <param name="array">the original array</param>
@@ -186,6 +200,7 @@ namespace ArrayUtilities
                 for (int j = i + 1; j < result.Length; j++)
                 {
                     bool isswapNeeded;
+
                     switch (sortDirection)
                     {
                         case SortDirection.Descending:
@@ -208,6 +223,42 @@ namespace ArrayUtilities
             return result;
         }
   
+        /// <summary>
+        /// Calculates the fibonacci sequence till n
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static long[] Fibonacci(int n)
+        {
+            if (n < 0)
+            {
+                return new long[0];
+            }
+
+            if (n == 0)
+            {
+                return new long[] { 0};
+            }
+
+            if (n == 1)
+            {
+                return new long[] { 0, 1 };
+            }
+
+            //n>=2
+            long[] result = new long[n + 1];
+            result[0] = 0;
+            result[1] = 1;
+
+            for(int i = 2; i <= n; i++)
+            {
+                result[i] = result[i - 1] + result[i - 1];
+            }
+
+            return result;
+
+        }
+
 
     }
 }
