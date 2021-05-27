@@ -259,6 +259,55 @@ namespace ArrayUtilities
 
         }
 
+        /// <summary>
+        /// ciurul lui Eratostene
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int[] PrimesEratostene(int n)
+        {
+            if (n <= 1)
+            {
+                return new int[0];
+            }
 
+            //n>=2
+            bool[] isCut = new bool[n+1];
+            int countPrimes = 0;
+            isCut[0] = true;
+            isCut[1] = true;
+
+            for(int i=2;i<isCut.Length;i++)
+            {
+                if (isCut[i] == true)
+                {
+                    continue;
+                }
+                else
+                {
+                    //"i" is prime
+                    countPrimes++;
+
+                    //cut multiples of i
+                    for(int factor = 2; i * factor<=n; factor++)
+                    {
+                        isCut[i * factor] = true;
+                    }
+                }
+            }
+
+            int[] result = new int[countPrimes];
+            
+            for(int i=0, indexPrime=0;i<isCut.Length; i++)
+            {
+                if (!isCut[i])
+                {
+                    result[indexPrime] = i;
+                    indexPrime++;
+                }
+            }
+
+            return result;
+        }
     }
 }

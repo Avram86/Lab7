@@ -18,6 +18,9 @@ namespace Lab7
             long[] fibo = ArrayHelper.Fibonacci(12);
             ArrayHelper.Print( fibo, "Fibonacci");
 
+            int[] primes = ArrayHelper.PrimesEratostene(10);
+            ArrayHelper.Print(primes, "Primes");
+
         }
         
         private static string ReadFromKeybooard(string label)
