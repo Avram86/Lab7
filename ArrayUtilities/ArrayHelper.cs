@@ -309,5 +309,42 @@ namespace ArrayUtilities
 
             return result;
         }
+
+        public static int[,] ReadMatrix(string label)
+        {
+            label = label ?? "Matrix";
+
+            int rowsCount = ConsoleHelper.ReadNumber($"{label} no of rows", 3, 3);
+            int columnsCount = ConsoleHelper.ReadNumber($"{label} no of columns", 3, 3);
+
+            int[,] matrix = new int[rowsCount, columnsCount];
+
+            for(int row=0;row<rowsCount;row++)
+            {
+                for(int col = 0; col < columnsCount; col++)
+                {
+                    int element = ConsoleHelper.ReadNumber($"element[{row},{col}] ", 3, 0);
+                    matrix[row, col] = element;
+                }
+            }
+
+            return matrix;
+        }
+
+        public static void PrintMatrix(string label, int[,] matrix)
+        {
+            Console.WriteLine(label ?? "Matrix");
+            for(int i=0;i<matrix.GetLength(0); i++)
+            {
+                for(int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    //6 spatii goale dupa cifra
+                    Console.Write($"{matrix[i,j],6}");
+                }
+
+                Console.WriteLine();
+            }
+        }
     }
 }
+

@@ -7,19 +7,22 @@ namespace Lab7
     {
         static void Main(string[] args)
         {
-            int[] array = { 2, -10, 5, -100, 2};
+            int[,] matrix = ArrayHelper.ReadMatrix("matrix1");
 
-            int[] elementsAsc = ArrayHelper.SelectionSort(array, SortDirection.Ascending);
-            ArrayHelper.Print( elementsAsc, "elements ascending");
+            ArrayHelper.PrintMatrix("matrix1" ,matrix);
+            //int[] array = { 2, -10, 5, -100, 2};
 
-            int[] elementsDesc = ArrayHelper.SelectionSort(array, SortDirection.Descending);
-            ArrayHelper.Print(elementsDesc, "elements descending");
+            //int[] elementsAsc = ArrayHelper.SelectionSort(array, SortDirection.Ascending);
+            //ArrayHelper.Print( elementsAsc, "elements ascending");
 
-            long[] fibo = ArrayHelper.Fibonacci(12);
-            ArrayHelper.Print( fibo, "Fibonacci");
+            //int[] elementsDesc = ArrayHelper.SelectionSort(array, SortDirection.Descending);
+            //ArrayHelper.Print(elementsDesc, "elements descending");
 
-            int[] primes = ArrayHelper.PrimesEratostene(10);
-            ArrayHelper.Print(primes, "Primes");
+            //long[] fibo = ArrayHelper.Fibonacci(12);
+            //ArrayHelper.Print( fibo, "Fibonacci");
+
+            //int[] primes = ArrayHelper.PrimesEratostene(10);
+            //ArrayHelper.Print(primes, "Primes");
 
         }
         
