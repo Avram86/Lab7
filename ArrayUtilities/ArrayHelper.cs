@@ -43,6 +43,7 @@ namespace ArrayUtilities
             }
 
         }
+
         /// <summary>
         /// Calculates the maximum element of an array
         /// if max cannot be determined(array is null or empty)
@@ -75,7 +76,13 @@ namespace ArrayUtilities
             }
         }
 
-        public static int[] BubbleSortAscending(int[] array)
+        /// <summary>
+        /// Sorts the array using the bubble sort algorithm
+        /// </summary>
+        /// <param name="array">The original array</param>
+        /// <param name="sortDirection">The sort direction</param>
+        /// <returns>The array having the sorted elements</returns>
+        public static int[] BubbleSort(int[] array, SortDirection sortDirection)
         {
             //4, 3, 2, 1
 
@@ -125,7 +132,20 @@ namespace ArrayUtilities
 
                 for (int i = 0; i < array.Length -1; i++)
                 {
-                    if (array[i] > array[i + 1])
+                    bool isSwapNeeded=true;
+
+                    switch (sortDirection)
+                    {
+                        case SortDirection.Descending:
+                            isSwapNeeded = array[i] < array[i + 1];
+                            break;
+
+                        case SortDirection.Ascending:
+                            isSwapNeeded = array[i] > array[i + 1];
+                            break;
+                    }
+
+                    if (isSwapNeeded)
                     {
                         intermediary = array[i];
                         array[i] = array[i + 1];
@@ -138,7 +158,12 @@ namespace ArrayUtilities
 
             return array;
         }
-
+      
+        /// <summary>
+        /// Prints the array to the console
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="label"></param>
         public static void Print(int[] array, string label)
         {
             string labelToPrint = label ?? "Array";
@@ -147,5 +172,7 @@ namespace ArrayUtilities
 
             Console.WriteLine($"{labelToPrint}=[{arrayElementsList}]");
         }
+
+
     }
 }

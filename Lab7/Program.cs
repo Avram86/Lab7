@@ -9,8 +9,11 @@ namespace Lab7
         {
             int[] array = { 2, -10, 5, -100, 2};
 
-            int[] elements = ArrayHelper.BubbleSortAscending(array);
-            ArrayHelper.Print( elements, "elements");
+            int[] elementsAsc = ArrayHelper.BubbleSort(array, SortDirection.Ascending);
+            ArrayHelper.Print( elementsAsc, "elements ascending");
+
+            int[] elementsDesc = ArrayHelper.BubbleSort(array, SortDirection.Descending);
+            ArrayHelper.Print(elementsDesc, "elements descending");
 
         }
         
