@@ -8,8 +8,19 @@ namespace Lab7
         static void Main(string[] args)
         {
             int[,] matrix = ArrayHelper.ReadMatrix("matrix1");
-
             ArrayHelper.PrintMatrix("matrix1" ,matrix);
+
+
+            //ArrayHelper.PrintMainDiagonal
+            int[] mainDiagonal = ArrayHelper.MainDiagonalAsArray(matrix);
+            ArrayHelper.Print(mainDiagonal, "MainDiagonal is: ");
+
+            //ArrayHelper.SumOf2Matrices
+            int[,] matrix2 = ArrayHelper.ReadMatrix("matrix2");
+            ArrayHelper.PrintMatrix("matrix2", matrix2);
+            int[,] sum = ArrayHelper.SumOf2Matrices(matrix, matrix2);
+            ArrayHelper.PrintAMatrix("The sum of the 2 matrices is: " ,sum);
+
             //int[] array = { 2, -10, 5, -100, 2};
 
             //int[] elementsAsc = ArrayHelper.SelectionSort(array, SortDirection.Ascending);

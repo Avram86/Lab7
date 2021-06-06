@@ -396,6 +396,64 @@ namespace ArrayUtilities
 
             return mainDiagonal;
         }
+
+        /// <summary>
+        /// Returns the sum of 2 matrices
+        /// </summary>
+        /// <param name="matrix1">The first matrix to be added</param>
+        /// <param name="matrix2">The second matrix to be added</param>
+        /// <returns>A new matrix of integers</returns>
+        public static int[,] SumOf2Matrices(int[,] matrix1, int[,] matrix2)
+        {
+            if(matrix1 is null || matrix2 is null)
+            {
+                return new int[0, 0];
+            }
+
+            int row1 = matrix1.GetLength(0);
+            int col1 = matrix1.GetLength(1);
+
+            int row2 = matrix2.GetLength(0);
+            int col2 = matrix2.GetLength(1);
+
+            if(row1!=row2 || col1 != col2)
+            {
+                return new int[0, 0];
+            }
+
+            int[,] sum = new int[row1, col1];
+
+            for(int i = 0; i < row1; i++)
+            {
+                for(int j = 0; j < col1; j++)
+                {
+                    sum[i, j] = matrix1[i, j] + matrix2[i, j];
+                }
+            }
+
+            return sum;
+        }
+
+        public static void PrintAMatrix(string label, int[,] matrix)
+        {
+            if(matrix is null)
+            {
+                Console.WriteLine("Not given a matrix to print");
+            }
+
+            int row = matrix.GetLength(0);
+            int col = matrix.GetLength(1);
+
+            Console.WriteLine(label);
+            for(int i = 0; i < row; i++)
+            {
+                for(int j = 0; j < col; j++)
+                {
+                    Console.Write($"{matrix[i,j],6}");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }
 
