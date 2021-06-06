@@ -381,7 +381,7 @@ namespace ArrayUtilities
                 return new int[0];
             }
 
-            
+
             int row = matrix.GetLength(0);
             int column = matrix.GetLength(1);
             int min = Math.Min(row, column);
@@ -405,7 +405,7 @@ namespace ArrayUtilities
         /// <returns>A new matrix of integers</returns>
         public static int[,] SumOf2Matrices(int[,] matrix1, int[,] matrix2)
         {
-            if(matrix1 is null || matrix2 is null)
+            if (matrix1 is null || matrix2 is null)
             {
                 return new int[0, 0];
             }
@@ -416,16 +416,16 @@ namespace ArrayUtilities
             int row2 = matrix2.GetLength(0);
             int col2 = matrix2.GetLength(1);
 
-            if(row1!=row2 || col1 != col2)
+            if (row1 != row2 || col1 != col2)
             {
                 return new int[0, 0];
             }
 
             int[,] sum = new int[row1, col1];
 
-            for(int i = 0; i < row1; i++)
+            for (int i = 0; i < row1; i++)
             {
-                for(int j = 0; j < col1; j++)
+                for (int j = 0; j < col1; j++)
                 {
                     sum[i, j] = matrix1[i, j] + matrix2[i, j];
                 }
@@ -436,7 +436,7 @@ namespace ArrayUtilities
 
         public static int[,] ProductOf2Matrices(int[,] matrix1, int[,] matrix2)
         {
-            if(matrix1 is null || matrix2 is null)
+            if (matrix1 is null || matrix2 is null)
             {
                 return new int[0, 0];
             }
@@ -454,12 +454,12 @@ namespace ArrayUtilities
 
             int[,] prod = new int[row1, col2];
 
-            for(int i = 0; i < row1; i++)
+            for (int i = 0; i < row1; i++)
             {
-                for(int j = 0; j < col2; j++)
+                for (int j = 0; j < col2; j++)
                 {
                     int sum = 0;
-                    for(int k=0;k< col1; k++)
+                    for (int k = 0; k < col1; k++)
                     {
                         sum += matrix1[i, k] * matrix2[k, j];
                     }
@@ -471,7 +471,7 @@ namespace ArrayUtilities
 
         public static void PrintAMatrix(string label, int[,] matrix)
         {
-            if(matrix is null)
+            if (matrix is null)
             {
                 Console.WriteLine("Not given a matrix to print");
             }
@@ -480,14 +480,82 @@ namespace ArrayUtilities
             int col = matrix.GetLength(1);
 
             Console.WriteLine(label);
-            for(int i = 0; i < row; i++)
+            for (int i = 0; i < row; i++)
             {
-                for(int j = 0; j < col; j++)
+                for (int j = 0; j < col; j++)
                 {
-                    Console.Write($"{matrix[i,j],6}");
+                    Console.Write($"{matrix[i, j],6}");
                 }
                 Console.WriteLine();
             }
+        }
+
+
+        /// <summary>
+        /// Calculates the cartesian product and returns the pairs as a jagged array
+        /// </summary>
+        /// <param name="set1"></param>
+        /// <param name="set2"></param>
+        /// <returns></returns>
+        public static int[][] CartesianProduct(int[] set1, int[] set2)
+        {
+            //set1=[a, b,c]
+            //set2=[1,2]
+            //CartesiaProduct=[(a,1) (a,2) (b,1) (b,2) (c,1) (c,2)]
+
+            int[][] result = new int[set1.Length * set2.Length][];
+            //int k = 0;
+
+            for (int i = 0; i < set1.Length; i++)
+            {
+                for (int j = 0; j < set2.Length; j++)
+                {
+                    result[i * set2.Length + j] = new int[] { set1[i], set2[j] };
+                    // k++;
+                }
+            }
+
+            return result;
+        }
+
+        public static void PrintJaggedArray(string label, int[][] array)
+        {
+            label = label ?? "The jagged array is: ";
+
+            StringBuilder jaggedArray = new StringBuilder();
+            jaggedArray.Append($"{label}=");
+
+
+            if (array is null)
+            {
+                jaggedArray.Append("null");
+                Console.WriteLine(jaggedArray.ToString());
+                return;
+            }
+
+            jaggedArray.Append("[");
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                int[] element = array[i];
+                if (element is null)
+                {
+                    jaggedArray.Append("(<null>)");
+                }
+                else
+                {
+                    string elementList = string.Join(",", element);
+                    jaggedArray.Append($"({elementList})");
+                }
+
+                if (i < array.Length - 1)
+                {
+                    jaggedArray.Append(", ");
+                }
+            }
+
+            jaggedArray.Append("]");
+            Console.WriteLine(jaggedArray.ToString());
         }
     }
 }

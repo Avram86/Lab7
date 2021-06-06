@@ -7,9 +7,15 @@ namespace Lab7
     {
         static void Main(string[] args)
         {
+            int[] sir1 = { 1, 2, 3 };
+            int[] sir2 = { 9, 8 };
+
+            int[][] result = ArrayHelper.CartesianProduct(sir1, sir2);
+            ArrayHelper.PrintJaggedArray("Cartesian product", result);
+            //return;
+
             int[,] matrix = ArrayHelper.ReadMatrix("matrix1");
             ArrayHelper.PrintMatrix("matrix1" ,matrix);
-
 
             //ArrayHelper.PrintMainDiagonal
             int[] mainDiagonal = ArrayHelper.MainDiagonalAsArray(matrix);
