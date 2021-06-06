@@ -222,7 +222,7 @@ namespace ArrayUtilities
             }
             return result;
         }
-  
+
         /// <summary>
         /// Calculates the fibonacci sequence till n
         /// </summary>
@@ -237,7 +237,7 @@ namespace ArrayUtilities
 
             if (n == 0)
             {
-                return new long[] { 0};
+                return new long[] { 0 };
             }
 
             if (n == 1)
@@ -250,7 +250,7 @@ namespace ArrayUtilities
             result[0] = 0;
             result[1] = 1;
 
-            for(int i = 2; i <= n; i++)
+            for (int i = 2; i <= n; i++)
             {
                 result[i] = result[i - 1] + result[i - 1];
             }
@@ -272,12 +272,12 @@ namespace ArrayUtilities
             }
 
             //n>=2
-            bool[] isCut = new bool[n+1];
+            bool[] isCut = new bool[n + 1];
             int countPrimes = 0;
             isCut[0] = true;
             isCut[1] = true;
 
-            for(int i=2;i<isCut.Length;i++)
+            for (int i = 2; i < isCut.Length; i++)
             {
                 if (isCut[i] == true)
                 {
@@ -289,7 +289,7 @@ namespace ArrayUtilities
                     countPrimes++;
 
                     //cut multiples of i
-                    for(int factor = 2; i * factor<=n; factor++)
+                    for (int factor = 2; i * factor <= n; factor++)
                     {
                         isCut[i * factor] = true;
                     }
@@ -297,8 +297,8 @@ namespace ArrayUtilities
             }
 
             int[] result = new int[countPrimes];
-            
-            for(int i=0, indexPrime=0;i<isCut.Length; i++)
+
+            for (int i = 0, indexPrime = 0; i < isCut.Length; i++)
             {
                 if (!isCut[i])
                 {
@@ -319,9 +319,9 @@ namespace ArrayUtilities
 
             int[,] matrix = new int[rowsCount, columnsCount];
 
-            for(int row=0;row<rowsCount;row++)
+            for (int row = 0; row < rowsCount; row++)
             {
-                for(int col = 0; col < columnsCount; col++)
+                for (int col = 0; col < columnsCount; col++)
                 {
                     int element = ConsoleHelper.ReadNumber($"element[{row},{col}] ", 3, 0);
                     matrix[row, col] = element;
@@ -334,16 +334,67 @@ namespace ArrayUtilities
         public static void PrintMatrix(string label, int[,] matrix)
         {
             Console.WriteLine(label ?? "Matrix");
-            for(int i=0;i<matrix.GetLength(0); i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                for(int j = 0; j < matrix.GetLength(1); j++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
                     //6 spatii goale dupa cifra
-                    Console.Write($"{matrix[i,j],6}");
+                    Console.Write($"{matrix[i, j],6}");
                 }
 
                 Console.WriteLine();
             }
+        }
+
+        /// <summary>
+        /// Prints the mainDiagonal of the matrix
+        /// </summary>
+        /// <param name="matrix">The given matrix</param>
+        public static void PrintMainDiagonal(int[,] matrix)
+        {
+            if (matrix is null)
+            {
+                Console.WriteLine("Matrix is null, no main diagonal to print!");
+                return;
+            }
+
+            int row = matrix.GetLength(0);
+            int column = matrix.GetLength(1);
+            int min = Math.Min(row, column);
+
+            Console.WriteLine("Main diagonal elements are:");
+            for (int i = 0; i < min; i++)
+            {
+                Console.Write($"{matrix[i, i],6}, ");
+            }
+        }
+
+        /// <summary>
+        /// returns the maindiagonal of a matrix in form of an array
+        /// </summary>
+        /// <param name="matrix">the matrix</param>
+        /// <returns>an array</returns>
+        public static int[] MainDiagonalAsArray(int[,] matrix)
+        {
+            if (matrix is null)
+            {
+                return new int[0];
+            }
+
+            
+            int row = matrix.GetLength(0);
+            int column = matrix.GetLength(1);
+            int min = Math.Min(row, column);
+
+            int[] mainDiagonal = new int[min];
+
+            Console.WriteLine("Main diagonal elements are:");
+            for (int i = 0; i < min; i++)
+            {
+                mainDiagonal[i] = matrix[i, i];
+            }
+
+            return mainDiagonal;
         }
     }
 }
