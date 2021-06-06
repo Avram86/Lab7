@@ -7,6 +7,10 @@ namespace Lab7
     {
         static void Main(string[] args)
         {
+            int[] array = { 1, 2, 1, 3, 1, 5, 2 };
+            int[][] arrayWithFreq = ArrayHelper.Frequencies(array);
+            ArrayHelper.PrintJaggedArray("Jagged array:",arrayWithFreq);
+
             int[] sir1 = { 1, 2, 3 };
             int[] sir2 = { 9, 8 };
 

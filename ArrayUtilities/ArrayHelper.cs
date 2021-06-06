@@ -518,6 +518,11 @@ namespace ArrayUtilities
             return result;
         }
 
+        /// <summary>
+        /// Prints a jagged array
+        /// </summary>
+        /// <param name="label">The label</param>
+        /// <param name="array">The jagged array</param>
         public static void PrintJaggedArray(string label, int[][] array)
         {
             label = label ?? "The jagged array is: ";
@@ -557,6 +562,45 @@ namespace ArrayUtilities
             jaggedArray.Append("]");
             Console.WriteLine(jaggedArray.ToString());
         }
+
+        public static int[][] Frequencies(int[] array)
+        {
+            //array=[1,     2,      1,      3,      1,5,2]
+            //freq= [3,     2,      3,      1,      3,1,2]
+            //      [(1,3), (2,2), (1,3),  (3,1)]
+            //1-3 ori
+            //2-2 ori
+            //3-1 data
+            //5-1 data
+
+
+            if(array is null)
+            {
+                return new int[0][];
+            }
+
+            int[][] elementsWithFreqencies = new int[array.Length][];
+
+            for(int i = 0; i < array.Length; i++)
+            {
+                int elemnet = array[i];
+                int frequency = 1;
+
+                for(int j = 0; j < array.Length; j++)
+                {
+                    //excludem pozitia i pe care am adunat-o deja freq=1
+                    if(i!=j && array[j] == elemnet)
+                    {
+                        frequency++;
+                    }
+                }
+                elementsWithFreqencies[i] = new[] { elemnet, frequency };
+            }
+
+            return elementsWithFreqencies;
+        }
+
+
     }
 }
 
