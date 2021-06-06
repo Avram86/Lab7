@@ -434,6 +434,41 @@ namespace ArrayUtilities
             return sum;
         }
 
+        public static int[,] ProductOf2Matrices(int[,] matrix1, int[,] matrix2)
+        {
+            if(matrix1 is null || matrix2 is null)
+            {
+                return new int[0, 0];
+            }
+
+            int row1 = matrix1.GetLength(0);
+            int col1 = matrix1.GetLength(1);
+
+            int row2 = matrix2.GetLength(0);
+            int col2 = matrix2.GetLength(1);
+
+            if (col1 != row2)
+            {
+                return new int[0, 0];
+            }
+
+            int[,] prod = new int[row1, col2];
+
+            for(int i = 0; i < row1; i++)
+            {
+                for(int j = 0; j < col2; j++)
+                {
+                    int sum = 0;
+                    for(int k=0;k< col1; k++)
+                    {
+                        sum += matrix1[i, k] * matrix2[k, j];
+                    }
+                    prod[i, j] = sum;
+                }
+            }
+            return prod;
+        }
+
         public static void PrintAMatrix(string label, int[,] matrix)
         {
             if(matrix is null)

@@ -21,6 +21,10 @@ namespace Lab7
             int[,] sum = ArrayHelper.SumOf2Matrices(matrix, matrix2);
             ArrayHelper.PrintAMatrix("The sum of the 2 matrices is: " ,sum);
 
+            //Arrayhelper.ProductOf2Matrices
+            int[,] prod = ArrayHelper.ProductOf2Matrices(matrix, matrix2);
+            ArrayHelper.PrintAMatrix("Product of two matrices", prod);
+
             //int[] array = { 2, -10, 5, -100, 2};
 
             //int[] elementsAsc = ArrayHelper.SelectionSort(array, SortDirection.Ascending);
